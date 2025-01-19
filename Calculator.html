@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+   <style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin-top:10px;
+    background-image: url("file:///D:/my%20projects/Calculator/fefse.webp");
+    background-size: cover;
+   
+}
+
+
+.calculator {
+    width: 320px;
+ 
+    opacity: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.calculator-screen {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    text-align: right;
+  
+    font-size: 2em;
+}
+
+.calculator-input {
+    width: 100%;
+    border: none;
+    
+    background: none;
+    color: white;
+    text-align: right;
+    font-size: 1.5em;
+    margin-left:-10px;
+    padding: 10px 20px;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns:(4);
+    gap: 5px;
+    padding: 20px;
+    background-color:#ffffff2b;
+    
+}
+
+.button {
+    background-color: #f9f9f9;
+    border: none;
+    padding: 10px;
+    font-size: 1.5em;
+    border-radius: 13px;
+    cursor: pointer;
+    
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #b9b7b7;
+}
+
+.operator {
+    background-color:rgba(0, 0, 0, 0.448);
+    color:#e08500;
+}
+
+.operator:hover {
+    background-color: #e08500;
+    color:white;
+}
+
+.equal {
+    grid-column: span 4;
+    background-color:#e08500;
+    color: white;
+}
+
+.equal:hover {
+    background-color: #e02a20;
+}
+
+   </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="calculator-screen">
+            <input type="text" class="calculator-input" readonly> 
+        </div>
+        <div class="calculator-buttons">
+            <button class="button">7</button>
+            <button class="button">8</button>
+            <button class="button">9</button>
+            <button class="button operator">/</button>
+            
+            <button class="button">4</button>
+            <button class="button">5</button>
+            <button class="button">6</button>
+            <button class="button operator">*</button>
+            
+            <button class="button">1</button>
+            <button class="button">2</button>
+            <button class="button">3</button>
+            <button class="button operator">-</button>
+            
+            <button class="button">0</button>
+            <button class="button">.</button>
+            <button class="button">C</button>
+            <button class="button operator">+</button>
+            
+            <button class="button equal">=</button>
+        </div>
+    </div>
+    <script>
+        let display = document.getElementsByClassName('calculator-input')[0];
+        let buttons = document.querySelectorAll('button');
+        let string = '';
+        
+        buttons.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                let value = e.target.innerHTML;
+                
+                if (value === 'C') {
+                    string = '';
+                    display.value = string;
+                } else if (value === '=') {
+                    try {
+                        string = eval(string);
+                        display.value = string;
+                    } catch (error) {
+                        display.value = 'Error';
+                        string = '';
+                        
+                    }
+                } else {
+                    string += value;
+                    display.value = string;
+                }
+            });
+        });
+    </script>
+    
+</body>
+</html>
